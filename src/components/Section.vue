@@ -1,16 +1,17 @@
  <script scope="this api replaced by slot-scope in 2.5.0+"> 
 // const axios = require('axios');
-new Vue({
-    el: '#app',
-    data: {
-        uploaded: ["hii"],
+export default({
+    name: '#app',
+    data() {
+        return {
+        uploaded: [],
         status: {
             0: "PENDING",
             1: "UPLOADING",
             2: "DONE",
             3: "FAILED"
         }
-    },
+    }},
     methods: {
         addFileToList(event) {
             let files = event.target.files || event.dataTransfer.files;
@@ -26,7 +27,6 @@ new Vue({
                     "download": undefined
                 }
                 this.uploaded.push(temp)
-                console.log(this.uploaded[i]);
                 this.uploadFile(i, files[i])
             }
             
@@ -82,7 +82,7 @@ new Vue({
                 <div class="uploaded-files-section">
                     <div class="uploaded-files">
                  <!-- <h1>  hii       {{ this.uploaded[0] }} hii </h1> -->
-                        <div v-if="this.uploaded!==undefined && this.uploaded.length > 0">
+                        <div v-if="this.uploaded.length > 0">
                             <h4 class="font-extrabold text-3xl text-center w-full">Uploaded Files</h4>
                             <div class="file my-4" v-for="item in uploaded">
                                 <div class="flex items-center">
